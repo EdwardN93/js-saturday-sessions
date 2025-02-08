@@ -8,13 +8,17 @@ Programul preia de la utilizator o valoare numerica si afiseaza
 */
 
 // 1)
-let inputNr = prompt("Input a number");
-inputNr = Number(inputNr) - 1;
+let inputNr = Number(prompt("Input a number"));
+let sequenceNr = inputNr;
 
 let sequence = [];
 
 for (let x = 0; x < 3; x++) {
-  sequence.push(inputNr++);
+  sequence.push(sequenceNr++ - 1);
 }
+console.log(inputNr);
 
 alert(sequence.join(", "));
+alert(`The opposite of ${inputNr} is : ${-inputNr}`);
+alert(`The remainder of ${inputNr} divided by 2 is : ${inputNr % 2}`);
+alert(`2 to the power of ${inputNr} is ${2 ** inputNr}`);
