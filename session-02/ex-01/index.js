@@ -9,7 +9,7 @@ let playerIsAlive = true;
 let playerHp = 100;
 let attack = false;
 
-let survivalDays = 10;
+let survivalDays = 5;
 let daysCount = 1;
 let monstersKilledCount = 0;
 
@@ -112,14 +112,16 @@ while (playerIsAlive && daysCount <= survivalDays) {
     }
   } else {
     playerHp > 1
-      ? console.log(`${playerName} did not enchounter any monsters`)
+      ? console.log(`${playerName} did not encounter any monsters`)
       : "";
   }
   daysCount++;
 }
 playerIsAlive
   ? console.log(
-      `${playerName} survived and killed ${monstersKilledCount} monsters on his journey!`
+      `${playerName} survived and killed ${
+        monstersKilledCount == 0 ? "no" : monstersKilledCount
+      } ${monstersKilledCount == 1 ? "monster" : "monsters"} on his journey!`
     )
   : console.log(`Unfortunately, ${playerName} didn't survive long enough`);
 
