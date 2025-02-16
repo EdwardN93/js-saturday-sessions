@@ -9,12 +9,14 @@ let playerIsAlive = true;
 let playerHp = 100;
 let attack = false;
 
-let survivalDays = 5;
+let gold = 0;
+
+let survivalDays = 10;
 let daysCount = 1;
 let monstersKilledCount = 0;
 
 console.log(
-  `${playerName} starts journey with the skills:\nHunting: ${huntingSkill}\nCombat: ${combatSkill}\nLuck:${luckSkill}`
+  `${playerName} starts journey with ${gold} gold coins and the following skills:\nHunting: ${huntingSkill}\nCombat: ${combatSkill}\nLuck:${luckSkill}`
 );
 
 while (playerIsAlive && daysCount <= survivalDays) {
@@ -24,6 +26,8 @@ while (playerIsAlive && daysCount <= survivalDays) {
 
   let diceRoll = Math.floor(Math.random() * 10) + 1;
   let combatDice = Math.floor(Math.random() * 10) + 1;
+  let goldDice = Math.floor(Math.random() * 10) + 1;
+
   delay(1000);
   console.log(
     `${playerName} (hunting skill : ${huntingSkill}) goes hunting and rolls ${diceRoll}`
@@ -48,6 +52,18 @@ while (playerIsAlive && daysCount <= survivalDays) {
         `${playerName} did not find food and is starving.. Hp: ${playerHp}`
       );
     }
+  }
+
+  if (goldDice <= luckSkill) {
+    delay(1000);
+    goldFound = Math.floor(Math.random() * 20) + 1;
+    gold += goldFound;
+    console.log(
+      `${playerName} found ${goldFound} gold pieces and now has ${gold}`
+    );
+  } else {
+    delay(1000);
+    console.log(`${playerName} did not find any gold coins`);
   }
 
   if (playerIsAlive && combatDice >= luckSkill) {
@@ -119,7 +135,7 @@ while (playerIsAlive && daysCount <= survivalDays) {
 }
 playerIsAlive
   ? console.log(
-      `${playerName} survived and killed ${
+      `${playerName} survived! Collected ${gold} gold coins and killed ${
         monstersKilledCount == 0 ? "no" : monstersKilledCount
       } ${monstersKilledCount == 1 ? "monster" : "monsters"} on his journey!`
     )
