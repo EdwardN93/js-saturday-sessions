@@ -3,19 +3,21 @@ const playerName = prompt(`Input player's name`);
 let huntingSkill = Number(prompt("Enter survival Skill"));
 let luckSkill = Number(prompt("Enter luck Skill"));
 let combatSkill = Number(prompt("Enter combat Skill"));
+let critChance = 1;
 
-let isAlive = true;
+let playerIsAlive = true;
 let playerHp = 100;
 let attack = false;
 
 let survivalDays = 10;
 let daysCount = 1;
+let monstersKilledCount = 0;
 
 console.log(
   `${playerName} starts journey with the skills:\nHunting: ${huntingSkill}\nCombat: ${combatSkill}\nLuck:${luckSkill}`
 );
 
-while (isAlive && daysCount <= survivalDays) {
+while (playerIsAlive && daysCount <= survivalDays) {
   console.log("\n");
   console.log(`Day ${daysCount} starts!`);
 
@@ -26,7 +28,7 @@ while (isAlive && daysCount <= survivalDays) {
     `${playerName} (hunting skill : ${huntingSkill}) goes hunting and rolls ${diceRoll}`
   );
 
-  if (isAlive && diceRoll <= huntingSkill) {
+  if (playerIsAlive && diceRoll <= huntingSkill) {
     playerHp += 10;
     if (playerHp > 100) {
       playerHp = 100;
@@ -35,7 +37,7 @@ while (isAlive && daysCount <= survivalDays) {
   } else {
     playerHp -= 10;
     if (playerHp <= 0) {
-      isAlive = false;
+      playerIsAlive = false;
       console.log(`${playerName} died of starvation`);
     } else {
       console.log(
@@ -44,7 +46,7 @@ while (isAlive && daysCount <= survivalDays) {
     }
   }
 
-  if (isAlive && combatDice >= luckSkill) {
+  if (playerIsAlive && combatDice >= luckSkill) {
     let monsterHp = 10;
     monsterIsAlive = true;
 
@@ -54,35 +56,52 @@ while (isAlive && daysCount <= survivalDays) {
     while (attack) {
       let monsterAttack = Math.floor(Math.random() * 5) + 1;
       let playerAttack = Math.floor(Math.random() * combatSkill) + 1;
+      let critDice = Math.floor(Math.random() * 10);
 
-      if (playerHp > 0) {
-        monsterHp -= playerAttack;
-        monsterHp > 0
-          ? console.log(
-              `Monster attacked ${playerName} and did ${monsterAttack} damage`
-            )
-          : "";
+      let criticalHit = false;
+      let critDamage = Math.floor(
+        playerAttack + combatSkill * (1 + critChance)
+      );
+
+      if (playerHp > 1 && playerIsAlive) {
+        if (critDice <= critChance) {
+          monsterHp -= critDamage;
+          criticalHit = true;
+          console.log(
+            `${playerName} did critical hit of ${critDamage} to the monster`
+          );
+        } else {
+          monsterHp -= playerAttack;
+          monsterHp > 0
+            ? console.log(
+                `Monster attacked ${playerName} and did ${monsterAttack} damage`
+              )
+            : "";
+        }
       } else {
         console.log(
           `Monster killed ${playerName} with a killing blow of ${monsterAttack}`
         );
         attack = false;
         playerHp = 0;
-        isAlive = false;
+        playerIsAlive = false;
       }
-      if (monsterHp > 0) {
+      if (monsterHp > 0 && monsterIsAlive) {
         playerHp -= monsterAttack;
-        playerHp > 0
-          ? console.log(
-              `${playerName} attacked monster and did ${playerAttack} damage`
-            )
-          : "";
+        if (monsterHp > 0 && playerIsAlive) {
+          console.log(
+            `${playerName} attacked monster and did ${playerAttack} damage`
+          );
+        }
       } else {
         console.log(
-          `${playerName} killed the monster with a killing blow of ${playerAttack} damage; Hp: ${playerHp}`
+          `${playerName} killed the monster with a killing blow of ${
+            criticalHit ? critDamage : playerAttack
+          } damage; Hp: ${playerHp}`
         );
         monsterIsAlive = false;
         attack = false;
+        monstersKilledCount++;
       }
     }
   } else {
@@ -92,6 +111,8 @@ while (isAlive && daysCount <= survivalDays) {
   }
   daysCount++;
 }
-isAlive
-  ? console.log(`${playerName} Survived the journey!`)
+playerIsAlive
+  ? console.log(
+      `${playerName} survived and killed ${monstersKilledCount} monsters on his journey!`
+    )
   : console.log(`Unfortunately, ${playerName} didn't survive long enough`);
