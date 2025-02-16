@@ -18,17 +18,19 @@ console.log(
 );
 
 while (playerIsAlive && daysCount <= survivalDays) {
+  delay(1000);
   console.log("\n");
   console.log(`Day ${daysCount} starts!`);
 
   let diceRoll = Math.floor(Math.random() * 10) + 1;
   let combatDice = Math.floor(Math.random() * 10) + 1;
-
+  delay(1000);
   console.log(
     `${playerName} (hunting skill : ${huntingSkill}) goes hunting and rolls ${diceRoll}`
   );
-
+  delay(1000);
   if (playerIsAlive && diceRoll <= huntingSkill) {
+    delay(1000);
     playerHp += 10;
     if (playerHp > 100) {
       playerHp = 100;
@@ -37,9 +39,11 @@ while (playerIsAlive && daysCount <= survivalDays) {
   } else {
     playerHp -= 10;
     if (playerHp <= 0) {
+      delay(1000);
       playerIsAlive = false;
       console.log(`${playerName} died of starvation`);
     } else {
+      delay(1000);
       console.log(
         `${playerName} did not find food and is starving.. Hp: ${playerHp}`
       );
@@ -51,7 +55,7 @@ while (playerIsAlive && daysCount <= survivalDays) {
     monsterIsAlive = true;
 
     attack = true;
-    console.log(`${playerName} encountered a monster`);
+    console.log(`${playerName} encountered a monster `);
 
     while (attack) {
       let monsterAttack = Math.floor(Math.random() * 5) + 1;
@@ -64,6 +68,7 @@ while (playerIsAlive && daysCount <= survivalDays) {
       );
 
       if (playerHp > 1 && playerIsAlive) {
+        delay(2000);
         if (critDice <= critChance) {
           monsterHp -= critDamage;
           criticalHit = true;
@@ -87,6 +92,7 @@ while (playerIsAlive && daysCount <= survivalDays) {
         playerIsAlive = false;
       }
       if (monsterHp > 0 && monsterIsAlive) {
+        delay(2000);
         playerHp -= monsterAttack;
         if (monsterHp > 0 && playerIsAlive) {
           console.log(
@@ -116,3 +122,10 @@ playerIsAlive
       `${playerName} survived and killed ${monstersKilledCount} monsters on his journey!`
     )
   : console.log(`Unfortunately, ${playerName} didn't survive long enough`);
+
+function delay(ms) {
+  const start = Date.now();
+  while (Date.now() - start < ms) {
+    // Wait for the time to pass
+  }
+}
