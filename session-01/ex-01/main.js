@@ -22,15 +22,31 @@ Programul preia de la utilizator o valoare numerica si afiseaza
   alert(`The remainder of ${inputNr} divided by 2 is : ${inputNr % 2}`);
   alert(`2 to the power of ${inputNr} is ${2 ** inputNr}`);
   */
-let x = 0;
-while (x < 10) {
-  setTimeout(() => {
-    console.log(x);
-  }, x * 1000);
-  x++;
-}
-function delay(x) {
-  setTimeout(() => {
-    console.log(x);
-  }, x * 2000);
+
+let sum = 0;
+let isRunning = true;
+
+document.addEventListener("keydown", function (ev) {
+  if (ev.key === "Escape") {
+    isRunning = false;
+    alert(`Program stopped! Sum is : ${sum}`);
+  }
+});
+
+while (isRunning) {
+  let userInput = prompt("Enter a number to add (or press Cancel to stop):");
+
+  if (userInput === null) {
+    alert(`Program stopped! Sum is : ${sum}`);
+    isRunning = false;
+  }
+
+  let num = Number(userInput);
+
+  if (isNaN(num)) {
+    alert("Please enter a valid number!");
+  } else {
+    sum += num;
+    console.log("Current Sum: " + sum);
+  }
 }

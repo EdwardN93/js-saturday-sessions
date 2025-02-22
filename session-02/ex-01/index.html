@@ -3,8 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css" />
+    <!-- <script src="index.js" defer></script> -->
+    <script src="class.js" defer></script>
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <p class="balance"></p>
+    <button class="addMoney">Addmoney</button>
+    <button class="withdrawl">Withdraw</button>
+    <input
+      type="number"
+      placeholder="Insert amount to deposit"
+      class="inputDeposit"
+    />
+    <input
+      type="number"
+      placeholder="Insert amount to withdraw"
+      class="inputWithdrawal"
+    />
+    <div>
+      <ul class="transaction"></ul>
+    </div>
+  </body>
 </html>
