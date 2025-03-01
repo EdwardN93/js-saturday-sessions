@@ -2,6 +2,8 @@
 // progress bar sa se goleasca pe masura ce timer se apropie de final
 // sa se schimbe culoarea la 10 secunde
 
+// TO BE REVISED
+
 let progressBar =
   document.querySelector("#progressBar") ||
   document.querySelector(".progress-bar");
