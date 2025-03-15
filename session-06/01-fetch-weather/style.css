@@ -50,6 +50,10 @@ body {
   margin: 2rem 0.5rem;
 }
 .forecast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   background-color: #6f91ff;
   padding: 0.8rem 1rem;
   border-radius: 50px;
