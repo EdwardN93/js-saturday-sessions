@@ -42,13 +42,22 @@ function displayWeather(apiData) {
     .reverse()
     .join("-");
 
+  document.querySelector(
+    ".lowest-temp"
+  ).innerHTML = `&darr; ${forecastDay.day.mintemp_c}°C`;
+  document.querySelector(
+    ".highest-temp"
+  ).innerHTML = `&uarr; ${forecastDay.day.maxtemp_c}°C`;
+
   console.log(weatherAtThisHour.time.split(" ")[1]);
 
   forecastDay.hour.forEach((element) => {
     const html = `
     <div class="forecast">
     <p>${element.time.split(" ")[1]}</p>
-    <img class="widget-img" src="https:${image}" alt="weather.img" />
+    <img class="widget-img" src="https:${
+      element.condition.icon
+    }" alt="weather.img" />
     <p>${element.temp_c}°C</p>
     </div>
     `;
