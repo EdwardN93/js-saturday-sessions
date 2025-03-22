@@ -1,19 +1,9 @@
 {
   "products": [
     {
-      "name": "Dipping Sauce",
-      "price": "5.45",
-      "id": "aede"
-    },
-    {
-      "id": "b428",
-      "name": "Premium Cat Food",
-      "price": "9.99"
-    },
-    {
-      "name": "Contemplation",
-      "price": "2.2",
-      "id": "a5a2"
+      "name": "adada",
+      "price": 12,
+      "id": "7d56"
     }
   ]
 }
