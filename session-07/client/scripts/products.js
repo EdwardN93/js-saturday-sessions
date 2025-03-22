@@ -1,11 +1,5 @@
 const apiUrl = `http://localhost:3000`;
 
-const currLocation = window.location.href;
-
-function setActiveLink() {
-  currLocation.lastIndexOf("index.html") > 1 ? "location" : "no location";
-}
-
 document.querySelector("#get-products").addEventListener("click", displayData);
 
 document.querySelector("#add-product").addEventListener("click", () => {

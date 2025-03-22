@@ -1,9 +1,13 @@
 {
-  "products": [
+  "products": [],
+  "navtemplate": [
     {
-      "name": "adada",
-      "price": 12,
-      "id": "7d56"
+      "name": "Home",
+      "link": "../index.html"
+    },
+    {
+      "name": "Products",
+      "link": "./pages/products.html"
     }
   ]
 }
