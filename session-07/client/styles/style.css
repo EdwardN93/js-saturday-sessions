@@ -38,6 +38,10 @@ a:hover::after {
   width: 90%;
   margin: 0 auto;
 }
+.logo-container {
+  font-size: 24px;
+}
+
 .nav-links {
   display: flex;
   gap: 1.2rem;
@@ -46,6 +50,38 @@ a:hover::after {
   display: none;
 }
 
+#product-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+#product-list > li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+#product-list div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column-reverse;
+  gap: 1.2rem;
+  font-family: "avantgarde_lt_bookregular", "Helvetica Neue", Verdana, Arial,
+    sans-serif;
+}
+
+.list-img {
+  width: 393px;
+  height: 593px;
+}
+
 .active {
   color: red;
+  font-weight: bold;
 }

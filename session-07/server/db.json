@@ -1,5 +1,56 @@
 {
-  "products": [],
+  "products": [
+    {
+      "id": 2,
+      "name": "ROCHIE ROZ CAMBRATA CU FUSTA EVAZATA",
+      "cod": "R 2418-ROZ",
+      "price": 449,
+      "sizes": [34, 36, 38, 40, 42, 44],
+      "colors": ["pink"],
+      "stock": 10,
+      "pictures": ["roz1.jpg", "roz2.jpg", "roz3.jpg", "roz4.jpg", "roz5.jpg"]
+    },
+    {
+      "id": 2,
+      "name": "ROCHIE ROZ CAMBRATA CU FUSTA EVAZATA",
+      "cod": "R 2418-ROZ",
+      "price": 449,
+      "sizes": [34, 36, 38, 40, 42, 44],
+      "colors": ["pink"],
+      "stock": 10,
+      "pictures": ["roz1.jpg", "roz2.jpg", "roz3.jpg", "roz4.jpg", "roz5.jpg"]
+    },
+    {
+      "id": 2,
+      "name": "ROCHIE ROZ CAMBRATA CU FUSTA EVAZATA",
+      "cod": "R 2418-ROZ",
+      "price": 449,
+      "sizes": [34, 36, 38, 40, 42, 44],
+      "colors": ["pink"],
+      "stock": 10,
+      "pictures": ["roz1.jpg", "roz2.jpg", "roz3.jpg", "roz4.jpg", "roz5.jpg"]
+    },
+    {
+      "id": 2,
+      "name": "ROCHIE ROZ CAMBRATA CU FUSTA EVAZATA",
+      "cod": "R 2418-ROZ",
+      "price": 449,
+      "sizes": [34, 36, 38, 40, 42, 44],
+      "colors": ["pink"],
+      "stock": 10,
+      "pictures": ["roz1.jpg", "roz2.jpg", "roz3.jpg", "roz4.jpg", "roz5.jpg"]
+    },
+    {
+      "id": 2,
+      "name": "ROCHIE ROZ CAMBRATA CU FUSTA EVAZATA",
+      "cod": "R 2418-ROZ",
+      "price": 449,
+      "sizes": [34, 36, 38, 40, 42, 44],
+      "colors": ["pink"],
+      "stock": 10,
+      "pictures": ["roz1.jpg", "roz2.jpg", "roz3.jpg", "roz4.jpg", "roz5.jpg"]
+    }
+  ],
   "navtemplate": [
     {
       "name": "Home",

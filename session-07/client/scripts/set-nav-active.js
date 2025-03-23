@@ -8,9 +8,11 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const nav = document.createElement("nav");
     const ul = document.createElement("ul");
+
     const divForLogo = document.createElement("div");
     const h2Logo = document.createElement("h2");
     h2Logo.textContent = "LOGO";
+    divForLogo.classList.add("logo-container");
     divForLogo.append(h2Logo);
 
     ul.classList.add("nav-links");
@@ -38,7 +40,6 @@ function setActiveLink() {
   const currLocation = window.location.href.split("/").pop();
   const links = document.querySelectorAll("#navbar a");
 
-  console.log(links);
   links.forEach((link) => {
     if (link.getAttribute("href").includes(currLocation))
       link.classList.add("active");

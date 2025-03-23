@@ -84,13 +84,23 @@ function displayData() {
 
       data.forEach((element) => {
         const li = document.createElement("li");
+        const div = document.createElement("div");
+        div.textContent = `${element.name} | ${element.price} `;
+        const a = document.createElement("a");
+        const img = document.createElement("img");
+        img.src = `../../server/img/rochie-roz-cambrata/${
+          element.pictures[Math.floor(Math.random() * element.pictures.length)]
+        }`;
+        img.classList.add("list-img");
+        div.append(a);
+        a.append(img);
         li.dataset.productId = element.id;
-        li.innerText = `${element.name} | ${element.price} `;
-        productsUl.appendChild(li);
+        li.appendChild(div);
+        productsUl.append(li);
 
         const editBtn = document.createElement("button");
         editBtn.textContent = "Edit";
-        li.append(editBtn);
+        li.appendChild(editBtn);
 
         editBtn.addEventListener("click", () => {
           document.querySelector("#edit-product-id").value = element.id;
@@ -101,7 +111,7 @@ function displayData() {
         });
         const deleteBtn = document.createElement("button");
         deleteBtn.textContent = "Delete";
-        li.append(deleteBtn);
+        li.appendChild(deleteBtn);
 
         deleteBtn.addEventListener("click", () => {
           deleteProduct(element.id);
