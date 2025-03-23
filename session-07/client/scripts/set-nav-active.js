@@ -57,15 +57,3 @@ function solveLinks(link) {
 
   return link;
 }
-
-const inputNum = 1234;
-
-function getNum(num) {
-  const string = String(num);
-  let sum = 0;
-  for (let i = 0; i < string.length; i++) {
-    sum += Number(string[i]);
-  }
-  console.log(sum);
-}
-getNum(inputNum);
