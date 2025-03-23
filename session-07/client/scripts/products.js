@@ -1,8 +1,8 @@
 const apiUrl = `http://localhost:3000`;
 
-document.querySelector("#get-products").addEventListener("click", displayData);
+document.querySelector("#get-products")?.addEventListener("click", displayData);
 
-document.querySelector("#add-product").addEventListener("click", () => {
+document.querySelector("#add-product")?.addEventListener("click", () => {
   const productName = document.querySelector("#product-name");
   const productPrice = document.querySelector("#product-price");
 
@@ -25,7 +25,7 @@ document.querySelector("#add-product").addEventListener("click", () => {
   productPrice.value = "";
 });
 
-document.querySelector("#edit-product").addEventListener("click", () => {
+document.querySelector("#edit-product")?.addEventListener("click", () => {
   const productId = document.querySelector("#edit-product-id").value;
   const productName = document.querySelector("#edit-product-name");
   const productPrice = document.querySelector("#edit-product-price");
@@ -65,10 +65,10 @@ function deleteProduct(productId) {
 function displayData() {
   console.log(`Fetch Products`);
   const productsUl = document.querySelector("#product-list");
-  const clearList = (productsUl.innerHTML = "");
 
   //Empty previous products list items
-  clearList;
+
+  if (productsUl !== null) productsUl.innerHTML = "";
   // Fetch data
 
   fetch(`${apiUrl}/products`)
@@ -80,7 +80,7 @@ function displayData() {
 
       if (data.length < 1) {
         productsUl.append(liNoItems);
-      } else clearList;
+      } else if (productsUl !== null) productsUl.innerHTML = "";
 
       data.forEach((element) => {
         const li = document.createElement("li");
@@ -93,7 +93,7 @@ function displayData() {
         const h4Price = document.createElement("h4");
         h4Price.textContent = `${element.price} Lei`;
         img.src = `../../server/img/rochie-roz-cambrata/${
-          element.pictures[Math.floor(Math.random() * element.pictures.length)]
+          element?.pictures[Math.floor(Math.random() * element.pictures.length)]
         }`;
         img.classList.add("list-img");
         a.append(img);
@@ -102,7 +102,7 @@ function displayData() {
         div.appendChild(h4Price);
         li.dataset.productId = element.id;
         li.appendChild(div);
-        productsUl.append(li);
+        if (productsUl) productsUl.append(li);
 
         const editBtn = document.createElement("button");
         editBtn.textContent = "Edit";
@@ -128,3 +128,4 @@ function displayData() {
     });
 }
 displayData();
+console.log(window.location.pathname);

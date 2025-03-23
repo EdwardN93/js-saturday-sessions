@@ -20,8 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     data.forEach((element) => {
       const li = document.createElement("li");
       const a = document.createElement("a");
-
-      a.href = element.link;
+      a.href = solveLinks(element.link);
       a.textContent = element.name;
 
       li.append(a);
@@ -45,3 +44,28 @@ function setActiveLink() {
       link.classList.add("active");
   });
 }
+
+function solveLinks(link) {
+  const isInPagesFolder = window.location.pathname.includes("/pages/");
+
+  if (isInPagesFolder) {
+    link = link.replace("../", "../");
+  } else {
+    link = link.replace("../pages/", "pages/");
+    link = link.replace("../", "");
+  }
+
+  return link;
+}
+
+const inputNum = 1234;
+
+function getNum(num) {
+  const string = String(num);
+  let sum = 0;
+  for (let i = 0; i < string.length; i++) {
+    sum += Number(string[i]);
+  }
+  console.log(sum);
+}
+getNum(inputNum);

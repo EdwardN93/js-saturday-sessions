@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script src="../scripts/products.js" defer></script>
+    <script src="../scripts/set-nav-active.js" defer></script>
+    <title>Add product</title>
+  </head>
+  <body>
+    <section>
+      <h2>Add product</h2>
+      <header id="navbar"></header>
+
+      <div>
+        <label for="product-name">Product Name:</label>
+        <input type="text" id="product-name" />
+      </div>
+      <div>
+        <label for="product-code">Product code:</label>
+        <input type="text" name="" id="product-code" />
+      </div>
+      <div>
+        <label for="product-price">Product price:</label>
+        <input type="number" id="product-price" />
+      </div>
+      <div>
+        <h2>Available sizes</h2>
+        <label for="34">34</label>
+        <input type="checkbox" name="sizes" id="34" value="34" />
+        <label for="36">36</label>
+        <input type="checkbox" name="sizes" id="36" value="36" />
+        <label for="38">38</label>
+        <input type="checkbox" name="sizes" id="38" value="38" />
+        <label for="40">40</label>
+        <input type="checkbox" name="sizes" id="40" value="40" />
+        <label for="42">42</label>
+        <input type="checkbox" name="sizes" id="42" value="42" />
+        <label for="44">44</label>
+        <input type="checkbox" name="sizes" id="44" value="44" />
+      </div>
+      <div>
+        <h2>Product colors</h2>
+        <label for="pink">Pink</label>
+        <input type="checkbox" name="color" id="pink" />
+        <label for="blue">Blue</label>
+        <input type="checkbox" name="color" id="blue" />
+        <label for="black">Black</label>
+        <input type="checkbox" name="color" id="black" />
+        <label for="white">White</label>
+        <input type="checkbox" name="color" id="white" />
+      </div>
+      <div>
+        <h2>Available stock</h2>
+        <label for="product-stock">No. of items to add to stock</label>
+        <input type="number" id="product-stock" />
+      </div>
+      <button id="add-product">Add Product</button>
+    </section>
+  </body>
+</html>

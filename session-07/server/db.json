@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 2,
+      "id": "2",
       "name": "ROCHIE ROZ CAMBRATA CU FUSTA EVAZATA",
       "cod": "R 2418-ROZ",
       "price": 449,
@@ -11,7 +11,7 @@
       "pictures": ["roz1.jpg", "roz2.jpg", "roz3.jpg", "roz4.jpg", "roz5.jpg"]
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "ROCHIE MIDI ROZ DIN VOAL CU ANCHIOR",
       "cod": "R 2418-ROZ",
       "price": 499,
@@ -21,7 +21,7 @@
       "pictures": ["roz1.jpg", "roz2.jpg", "roz3.jpg", "roz4.jpg", "roz5.jpg"]
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "ROCHIE ROZ SATINATA CU CENTURA NEAGRA",
       "cod": "R 2418-ROZ",
       "price": 599,
@@ -31,7 +31,7 @@
       "pictures": ["roz1.jpg", "roz2.jpg", "roz3.jpg", "roz4.jpg", "roz5.jpg"]
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "ROCHIE CASUAL ALBA CU PERLE LA GULER",
       "cod": "R 2418-ROZ",
       "price": 389,
@@ -41,7 +41,7 @@
       "pictures": ["roz1.jpg", "roz2.jpg", "roz3.jpg", "roz4.jpg", "roz5.jpg"]
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "ROCHIE FLORALA CU CROI BABY DOLL",
       "cod": "R 2418-ROZ",
       "price": 449,
@@ -54,11 +54,18 @@
   "navtemplate": [
     {
       "name": "Home",
-      "link": "../index.html"
+      "link": "../index.html",
+      "id": "fcbc"
     },
     {
       "name": "Products",
-      "link": "./pages/products.html"
+      "link": "../pages/products.html",
+      "id": "07a6"
+    },
+    {
+      "name": "Add Items",
+      "link": "../pages/add-items.html",
+      "id": "07a7"
     }
   ]
 }
