@@ -85,15 +85,21 @@ function displayData() {
       data.forEach((element) => {
         const li = document.createElement("li");
         const div = document.createElement("div");
-        div.textContent = `${element.name} | ${element.price} `;
+        // div.textContent = `${element.name} | ${element.price} `;
         const a = document.createElement("a");
         const img = document.createElement("img");
+        const h3 = document.createElement("h3");
+        h3.textContent = element.name;
+        const h4Price = document.createElement("h4");
+        h4Price.textContent = `${element.price} Lei`;
         img.src = `../../server/img/rochie-roz-cambrata/${
           element.pictures[Math.floor(Math.random() * element.pictures.length)]
         }`;
         img.classList.add("list-img");
-        div.append(a);
         a.append(img);
+        div.append(a);
+        div.appendChild(h3);
+        div.appendChild(h4Price);
         li.dataset.productId = element.id;
         li.appendChild(div);
         productsUl.append(li);
