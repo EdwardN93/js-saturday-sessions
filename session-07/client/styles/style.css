@@ -101,6 +101,29 @@ h3 {
   height: 593px;
 }
 
+#product-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rem;
+  margin-top: 5rem;
+}
+
+.image-show {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 5rem;
+}
+
+.all-images {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
 .active {
   color: red;
   font-weight: bold;
