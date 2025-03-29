@@ -1,0 +1,40 @@
+{
+  "users": [
+    {
+      "name": "Edward",
+      "location": "Bucuresti",
+      "hobbies": [
+        "Coding",
+        "Travelling"
+      ],
+      "rating": 4.8,
+      "available": true,
+      "userType": "admin",
+      "id": "cmHAP8_"
+    },
+    {
+      "name": "Ana",
+      "location": "Cluj",
+      "hobbies": [
+        "Coding",
+        "Travelling"
+      ],
+      "rating": 4.1,
+      "available": true,
+      "userType": "user",
+      "id": "ztxH9i_"
+    },
+    {
+      "name": "Petrica",
+      "location": "Dorobanti",
+      "hobbies": [
+        "Coding",
+        "Travelling"
+      ],
+      "rating": 3.1,
+      "available": true,
+      "userType": "user",
+      "id": "gkFmoxc"
+    }
+  ]
+}
