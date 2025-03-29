@@ -1,0 +1,255 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  display: flex;
+  position: relative;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.sidebar .logo {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sidebar h1 {
+  font-size: 2rem;
+  color: #28a745;
+}
+
+.sidebar ul {
+  list-style-type: none;
+}
+
+.sidebar ul li {
+  margin: 20px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  display: block;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+  background-color: #28a745;
+}
+
+.main-content {
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  padding: 40px;
+}
+
+h2 {
+  color: #28a745;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-item,
+.low-stock-alert,
+.inventory {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  max-width: fit-content;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+/* Low Stock Alert */
+.low-stock-alert {
+  background-color: #ffcc00;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.low-stock-alert.hidden {
+  display: none;
+}
+
+/* Inventory List */
+.inventory-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.2rem;
+}
+
+.inventory-list li,
+.stock-alert-list li {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 15px;
+  background-color: #fff;
+  margin: 10px 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-list li button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.inventory-list li button:hover {
+  background-color: #c82333;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  margin: 0 auto;
+  background-color: #333333d4;
+  min-height: 100vh;
+  width: 100vw;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.close-btn:hover {
+  transform-origin: center;
+  transform: scale(1.5);
+}
+
+.modal-container {
+  position: relative;
+  display: flex;
+  min-width: 30%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 4rem 6rem;
+  border-radius: 10px;
+  gap: 1.2rem;
+}
+
+.modal-form {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+  gap: 1.2rem;
+}
+
+.modal-form div {
+  width: 100%;
+}
+
+.btn-div {
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+  .sidebar {
+    position: inherit;
+    width: 100%;
+    max-height: fit-content;
+    text-align: center;
+  }
+  .main-content {
+    margin: 0;
+    min-width: fit-content;
+  }
+}

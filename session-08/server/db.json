@@ -13,18 +13,6 @@
       "id": "cmHAP8_"
     },
     {
-      "name": "Ana",
-      "location": "Cluj",
-      "hobbies": [
-        "Coding",
-        "Travelling"
-      ],
-      "rating": 4.1,
-      "available": true,
-      "userType": "user",
-      "id": "ztxH9i_"
-    },
-    {
       "name": "Petrica",
       "location": "Dorobanti",
       "hobbies": [
@@ -35,6 +23,19 @@
       "available": true,
       "userType": "user",
       "id": "gkFmoxc"
+    },
+    {
+      "id": "9f62",
+      "name": "Geanina",
+      "location": "Bucuresti",
+      "hobbies": [
+        "HR",
+        "Travelling",
+        "Pisicile"
+      ],
+      "rating": 4.9,
+      "available": true,
+      "userType": "admin"
     }
   ]
 }
