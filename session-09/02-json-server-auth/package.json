@@ -1,0 +1,16 @@
+{
+  "name": "02-json-server-auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "json-server db.json -m ./node_modules/json-server-auth -r routes.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "json-server": "^0.17.4",
+    "json-server-auth": "^2.1.0"
+  }
+}

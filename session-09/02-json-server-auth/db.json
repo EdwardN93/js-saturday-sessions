@@ -1,0 +1,25 @@
+{
+  "users": [
+    {
+      "email": "bob@gmail.com",
+      "password": "$2a$10$YMs7x68uS.4z5bohnBQfJe6rs.zcIKKm8uHNXTGYeg6vu5qfLoMnO",
+      "location": "Dolj",
+      "number": 31,
+      "id": 1
+    },
+    {
+      "email": "bibi@gmail.com",
+      "password": "$2a$10$2n8tbvfd1BfpssTihI156.FRdiNpArIJcRUlU.wKB5jGVlj8zECNK",
+      "location": "Timisoara",
+      "number": 42,
+      "id": 2
+    }
+  ],
+  "messages": [
+    {
+      "message": "Hello Stranger",
+      "userId": 1,
+      "id": 1
+    }
+  ]
+}
