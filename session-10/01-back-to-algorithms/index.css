@@ -1,0 +1,8 @@
+#display-players {
+  display: flex;
+  gap: 1rem;
+}
+#display-players .player-container {
+  border: 1px solid black;
+  padding: 1rem;
+}
