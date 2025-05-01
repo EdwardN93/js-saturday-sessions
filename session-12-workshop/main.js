@@ -1,5 +1,3 @@
-const API_KEY = `kT9nWX/DQJB8hw5UyjGGYg==wEbNP4vTGxttHScM`;
-
 const requestOptions = {
   year: 1997,
   month: "",
