@@ -14,19 +14,16 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   const { year = 1995, month, day, text } = requestOptions;
 
   let url = "https://api.api-ninjas.com/v1/historicalevents";
-
-  const params = [year];
+  const params = [];
 
   if (year) params.push(`year=${year}`);
   if (month) params.push(`month=${month}`);
-  if (day) params.push(`day=${day}`);
+  if (day) params.push(`date=${day}`);
   if (text) params.push(`text=${encodeURIComponent(text)}`);
 
   if (params.length > 0) {
     url += "?" + params.join("&");
   }
-
-  console.log("Request URL:", url);
 
   const urlOptions = {
     method: "GET",
@@ -38,12 +35,26 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
 
   try {
     const response = await fetch(url, urlOptions);
-    if (!response.ok) throw new Error(`Status error: ${response.status}`);
+
+    if (!response.ok) {
+      let message = `Status ${response.status}`;
+      try {
+        const errorData = await response.json();
+        message += `: ${
+          errorData.error || errorData.message || "Unknown error"
+        }`;
+      } catch (e) {
+        message += " (Invalid JSON response)";
+      }
+      throw new Error(message);
+    }
+
     const data = await response.json();
     console.log(data);
+    return data;
   } catch (error) {
-    console.log(error);
+    console.error("API Error:", error.message);
+    throw error;
   }
 };
-
-getHistoricalEvents(API_KEY, requestOptions);
+getHistoricalEvents(API_KEY);
