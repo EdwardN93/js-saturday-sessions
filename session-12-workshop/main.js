@@ -1,17 +1,14 @@
 const requestOptions = {
-  year: 1997,
+  year: 1500,
   month: "",
   day: "",
   text: "",
 };
 
-// primesc functia de la Andreea si o testez
-// trimit functia Elenei
-
 const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   if (!apiKey) throw new Error("API Key not provided");
 
-  const { year = 1995, month, day, text } = requestOptions;
+  const { year, month, day, text } = requestOptions;
 
   let url = "https://api.api-ninjas.com/v1/historicalevents";
   const params = [];
@@ -23,6 +20,8 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
 
   if (params.length > 0) {
     url += "?" + params.join("&");
+  } else {
+    throw new Error("You should provide at least a year, month or text");
   }
 
   const urlOptions = {
@@ -50,11 +49,48 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
     }
 
     const data = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("API Error:", error.message);
     throw error;
   }
 };
-getHistoricalEvents(API_KEY);
+
+const parentElementAppend = document.querySelector(".appendDataUl");
+
+const displayHistoricalEvents = (parentElement, events, errClass) => {
+  parentElement.innerHtml = "";
+  if (!events.length) {
+    parentElement.innerHtml = "";
+    const errBlock = document.createElement("h2");
+    errBlock.classList.add(errClass);
+    errBlock.textContent = `No historical events are registered`;
+    parentElement.append(errBlock);
+  } else {
+    events.forEach((ev) => {
+      const event = `
+      <li>
+        <span>Year: ${ev.year}</span>
+        <span>Month: ${ev.month}</span>
+        <span>Day: ${ev.day}</span>
+        <div>
+          <span>Event: ${ev.event}</span>
+        </div>
+      </li>
+      `;
+      parentElement.insertAdjacentHTML("beforeend", event);
+    });
+  }
+};
+
+const errorDisplayMessageFromFetch = (error, parentElement) => {
+  const div = document.createElement("div");
+  div.textContent = error;
+  parentElement.append(div);
+};
+
+getHistoricalEvents(API_KEY, requestOptions)
+  .then((data) =>
+    displayHistoricalEvents(parentElementAppend, data, "errClass")
+  )
+  .catch((err) => errorDisplayMessageFromFetch(err, parentElementAppend));
