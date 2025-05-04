@@ -1,12 +1,21 @@
 const form = document.querySelector(".form");
+const parentElementAppend = document.querySelector(".appendDataOl");
+const loader = document.querySelector(".lds-facebook ");
+
 const requestOptions = {
   year: 1500,
   month: "",
   day: "",
   text: "",
 };
+
 const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   if (!apiKey) throw new Error("API Key not provided");
+
+  if (loader.classList.contains("hidden")) {
+    loader.classList.remove("hidden");
+    parentElementAppend.innerHTML = "";
+  }
 
   const { year, month, day, text } = requestOptions;
 
@@ -21,11 +30,11 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   if (params.length > 0) {
     url += "?" + params.join("&");
   } else {
+    loader.classList.add("hidden");
     throw new Error("You should provide at least a year, month or text");
   }
 
   const urlOptions = {
-    method: "GET",
     headers: {
       "X-Api-Key": apiKey,
       "Content-type": "application/json",
@@ -45,9 +54,11 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
       } catch (e) {
         message += " (Invalid JSON response)";
       }
+      loader.classList.add("hidden");
       throw new Error(message);
     }
 
+    loader.classList.add("hidden");
     const data = await response.json();
     const reorderedData = data.sort((a, b) => a.year - b.year);
 
@@ -57,8 +68,6 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
     throw error;
   }
 };
-
-const parentElementAppend = document.querySelector(".appendDataOl");
 
 const displayHistoricalEvents = (parentElement, events, errClass) => {
   parentElement.innerHTML = "";
@@ -85,6 +94,7 @@ const displayHistoricalEvents = (parentElement, events, errClass) => {
 };
 
 const errorDisplayMessageFromFetch = (error, parentElement) => {
+  parentElement.innerHTML = "";
   const div = document.createElement("div");
   div.textContent = error;
   parentElement.append(div);
@@ -111,7 +121,7 @@ const getFormDataAndFetchThem = (data) => {
     .then((data) =>
       displayHistoricalEvents(parentElementAppend, data, "errClass")
     )
-    .catch((err) => errorDisplayMessageFromFetch(err));
+    .catch((err) => errorDisplayMessageFromFetch(err, parentElementAppend));
 };
 
 form.addEventListener("submit", (e) => {

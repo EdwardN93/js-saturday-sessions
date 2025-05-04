@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="spinner.css" />
     <script src="apikey.js" defer></script>
     <script src="main.js" defer></script>
     <title>Fetching for Collab</title>
@@ -11,6 +12,9 @@
   <body>
     <h2>Collab JS Fetch</h2>
 
+    <h4>Enter a specific date and text to fetch historical events</h4>
+    <h4>You can, however, enter only the date or the event, or country.</h4>
+    <h4>*One of them is required*</h4>
     <form class="form">
       <div class="formData">
         <div>
@@ -26,7 +30,14 @@
         <button class="getPage">Get Events</button>
       </div>
     </form>
+
     <div class="appendData">
+      <div class="lds-facebook">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
       <ol class="appendDataOl"></ol>
     </div>
   </body>
