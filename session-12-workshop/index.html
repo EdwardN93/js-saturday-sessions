@@ -13,12 +13,18 @@
 
     <form class="form">
       <div class="formData">
-        <label for="date">Select date</label>
-        <input type="date" name="date" id="date" />
-        <label for="eventText">Text to search events on</label>
-        <input type="text" name="eventText" id="eventText" />
+        <div>
+          <label for="date">Select date</label>
+          <input type="date" name="date" id="date" />
+        </div>
+        <div>
+          <label for="eventText">Text to search events on: </label>
+          <input type="text" name="eventText" id="eventText" />
+        </div>
       </div>
-      <button class="getPage">Get</button>
+      <div class="btnHolder">
+        <button class="getPage">Get Events</button>
+      </div>
     </form>
     <div class="appendData">
       <ol class="appendDataOl"></ol>

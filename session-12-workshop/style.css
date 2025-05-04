@@ -1,16 +1,9 @@
-.appendData,
-.appendDataOl {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 body {
   width: 95%;
   display: flex;
@@ -20,10 +13,85 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+.appendData,
+.appendDataOl {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.appendData {
+  align-items: center;
+  width: 80%;
+}
+
 .appendDataOl {
   margin: 3rem 0;
   width: 100%;
   gap: 2rem;
+}
+
+form.form {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: sans-serif;
+}
+
+.formData {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.formData div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+input[type="date"],
+input[type="text"] {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.btnHolder {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+
+button.getPage {
+  background-color: #007bff;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button.getPage:hover {
+  background-color: #0056b3;
 }
 
 li {

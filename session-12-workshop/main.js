@@ -96,14 +96,8 @@ getHistoricalEvents(API_KEY, requestOptions)
   )
   .catch((err) => errorDisplayMessageFromFetch(err, parentElementAppend));
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
-  console.log(data);
-
-  const [year, month, day] = data.date.split("-");
+const getFormDataAndFetchThem = (data) => {
+  const [year, month, day] = data?.date?.split("-");
   const text = data.eventText;
 
   const requestOptions = {
@@ -113,11 +107,17 @@ form.addEventListener("submit", (e) => {
     text,
   };
 
-  console.log(requestOptions);
-
   getHistoricalEvents(API_KEY, requestOptions)
     .then((data) =>
       displayHistoricalEvents(parentElementAppend, data, "errClass")
     )
     .catch((err) => errorDisplayMessageFromFetch(err));
+};
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  getFormDataAndFetchThem(data);
 });
