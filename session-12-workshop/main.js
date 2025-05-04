@@ -1,10 +1,10 @@
+const form = document.querySelector(".form");
 const requestOptions = {
   year: 1500,
   month: "",
   day: "",
   text: "",
 };
-
 const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   if (!apiKey) throw new Error("API Key not provided");
 
@@ -49,19 +49,21 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
     }
 
     const data = await response.json();
-    return data;
+    const reorderedData = data.sort((a, b) => a.year - b.year);
+
+    return reorderedData;
   } catch (error) {
     console.error("API Error:", error.message);
     throw error;
   }
 };
 
-const parentElementAppend = document.querySelector(".appendDataUl");
+const parentElementAppend = document.querySelector(".appendDataOl");
 
 const displayHistoricalEvents = (parentElement, events, errClass) => {
-  parentElement.innerHtml = "";
+  parentElement.innerHTML = "";
+
   if (!events.length) {
-    parentElement.innerHtml = "";
     const errBlock = document.createElement("h2");
     errBlock.classList.add(errClass);
     errBlock.textContent = `No historical events are registered`;
@@ -70,14 +72,13 @@ const displayHistoricalEvents = (parentElement, events, errClass) => {
     events.forEach((ev) => {
       const event = `
       <li>
-        <span>Year: ${ev.year}</span>
-        <span>Month: ${ev.month}</span>
-        <span>Day: ${ev.day}</span>
-        <div>
-          <span>Event: ${ev.event}</span>
-        </div>
-      </li>
-      `;
+          <span>${ev.day}</span><span>${ev.month}</span><span>${
+        ev.year <= 0 ? `${-ev.year} BCE` : `${ev.year} CE`
+      }</span>
+          <div>
+            <span>Event: ${ev.event}</span>
+          </div>
+      </li>`;
       parentElement.insertAdjacentHTML("beforeend", event);
     });
   }
@@ -94,3 +95,29 @@ getHistoricalEvents(API_KEY, requestOptions)
     displayHistoricalEvents(parentElementAppend, data, "errClass")
   )
   .catch((err) => errorDisplayMessageFromFetch(err, parentElementAppend));
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  console.log(data);
+
+  const [year, month, day] = data.date.split("-");
+  const text = data.eventText;
+
+  const requestOptions = {
+    year: Number(year),
+    month: Number(month),
+    day: Number(day),
+    text,
+  };
+
+  console.log(requestOptions);
+
+  getHistoricalEvents(API_KEY, requestOptions)
+    .then((data) =>
+      displayHistoricalEvents(parentElementAppend, data, "errClass")
+    )
+    .catch((err) => errorDisplayMessageFromFetch(err));
+});

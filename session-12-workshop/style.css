@@ -1,5 +1,5 @@
 .appendData,
-.appendDataUl {
+.appendDataOl {
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -20,7 +20,7 @@ body {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.appendDataUl {
+.appendDataOl {
   margin: 3rem 0;
   width: 100%;
   gap: 2rem;
@@ -38,10 +38,22 @@ li:hover {
   transform: scale(1.005);
 }
 
-li div {
-  margin-top: 0.5rem;
+li span {
+  margin: 0;
 }
 
+li div span {
+  margin-top: 0.5rem;
+  color: blueviolet;
+}
+
+li span {
+  color: orange;
+}
+
+li span:nth-child(-n + 2)::after {
+  content: ".";
+}
 .errClass {
   padding: 0.8rem 1rem;
 }
