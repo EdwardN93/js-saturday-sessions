@@ -1,3 +1,12 @@
+const parentElementAppend = document.querySelector(".appendDataOl");
+
+const requestOptions = {
+  year: 1200,
+  month: "",
+  day: "",
+  text: "",
+};
+
 function getHistoricalEvents(apiKey, requestOptions) {
   // Step 1: Validate requestOptions
   const nonEmptyParams = Object.keys(requestOptions).filter(
@@ -69,3 +78,7 @@ function displayHistoricalEvents(parentElement, eventsList) {
     parentElement.appendChild(listItem);
   });
 }
+
+getHistoricalEvents(API_KEY, requestOptions)
+  .then((data) => displayHistoricalEvents(parentElementAppend, data))
+  .catch((err) => console.log(err));

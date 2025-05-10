@@ -3,7 +3,7 @@ const parentElementAppend = document.querySelector(".appendDataOl");
 const loader = document.querySelector(".lds-facebook ");
 
 const requestOptions = {
-  year: 1200,
+  year: 2000,
   month: "",
   day: "",
   text: "",
@@ -11,11 +11,6 @@ const requestOptions = {
 
 const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   if (!apiKey) throw new Error("API Key not provided");
-
-  if (loader.classList.contains("hidden")) {
-    loader.classList.remove("hidden");
-    parentElementAppend.innerHTML = "";
-  }
 
   const { year, month, day, text } = requestOptions;
 
@@ -30,7 +25,6 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   if (params.length > 0) {
     url += "?" + params.join("&");
   } else {
-    loader.classList.add("hidden");
     throw new Error("You should provide at least a year, month or text");
   }
 
@@ -54,11 +48,9 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
       } catch (e) {
         message += " (Invalid JSON response)";
       }
-      loader.classList.add("hidden");
       throw new Error(message);
     }
 
-    loader.classList.add("hidden");
     const data = await response.json();
     const reorderedData = data.sort((a, b) => a.year - b.year);
 
