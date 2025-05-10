@@ -3,7 +3,7 @@ const parentElementAppend = document.querySelector(".appendDataOl");
 const loader = document.querySelector(".lds-facebook ");
 
 const requestOptions = {
-  year: 1500,
+  year: 1200,
   month: "",
   day: "",
   text: "",
@@ -69,12 +69,14 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   }
 };
 
-const displayHistoricalEvents = (parentElement, events, errClass) => {
+const displayHistoricalEvents = (parentElement, events, errClass = "") => {
   parentElement.innerHTML = "";
 
   if (!events.length) {
     const errBlock = document.createElement("h2");
-    errBlock.classList.add(errClass);
+    if (errClass) {
+      errBlock.classList.add(errClass);
+    }
     errBlock.textContent = `No historical events are registered`;
     parentElement.append(errBlock);
   } else {
