@@ -1,10 +1,10 @@
 const parentElementAppend = document.querySelector(".appendDataOl");
 
 const requestOptions = {
-  year: 1200,
-  month: "",
-  day: "",
-  text: "",
+  year: 1900,
+  // month: "",
+  // day: "",
+  // text: "",
 };
 
 function getHistoricalEvents(apiKey, requestOptions) {

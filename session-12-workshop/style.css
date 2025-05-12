@@ -122,6 +122,10 @@ li span {
 li span:nth-child(-n + 2)::after {
   content: ".";
 }
+
+li span:nth-child(4) {
+  color: darkmagenta;
+}
 .errClass {
   padding: 0.8rem 1rem;
 }
