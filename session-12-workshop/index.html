@@ -6,8 +6,9 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="spinner.css" />
     <script src="apikey.js" defer></script>
+    <script src="form.js" defer></script>
     <script src="main.js" defer></script>
-    <!-- <script src="external/external.js" defer></script> -->
+    <!-- <script src="external/others-functions.js" defer></script> -->
     <title>Fetching for Collab</title>
   </head>
   <body>
@@ -16,24 +17,30 @@
     <h4>Enter a specific date and text to fetch historical events</h4>
     <h4>You can, however, enter only the date or the event, or country.</h4>
     <h4>*One of them is required*</h4>
+    <div id="formDiv"></div>
     <!-- <form class="form">
       <div class="formData">
-        <div>
-          <label for="date">Select date</label>
-          <input type="date" name="date" id="date" />
-        </div>
-        <div>
-          <label for="eventText">Text to search events on: </label>
-          <input type="text" name="eventText" id="eventText" />
-        </div>
+        <label for="day">Select day</label>
+        <input type="number" name="day" id="day" placeholder="Enter day" />
+        <label for="month">Select month</label>
+        <input
+          type="number"
+          name="month"
+          id="month"
+          placeholder="Enter month"
+        />
+        <label for="year">Select year</label>
+        <input type="number" name="year" id="year" placeholder="Enter Year " />
+        <label for="eventText">Text to search events on: </label>
+        <input type="text" name="eventText" id="eventText" />
       </div>
       <div class="btnHolder">
         <button class="getPage">Get Events</button>
       </div>
     </form> -->
 
-    <!-- <div class="appendData">
-      <div class="lds-facebook">
+    <div class="appendData">
+      <!-- <div class="lds-facebook">
         <div></div>
         <div></div>
         <div></div>

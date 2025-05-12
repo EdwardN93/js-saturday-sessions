@@ -46,7 +46,7 @@ form.form {
 .formData {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 0.8rem;
 }
 
 .formData div {
@@ -59,7 +59,7 @@ label {
   margin-bottom: 0.3rem;
 }
 
-input[type="date"],
+input[type="number"],
 input[type="text"] {
   padding: 0.6rem;
   border: 1px solid #ccc;

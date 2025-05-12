@@ -1,13 +1,6 @@
 const form = document.querySelector(".form");
 const parentElementAppend = document.querySelector(".appendDataOl");
 
-const requestOptions = {
-  year: 2000,
-  month: "",
-  day: "",
-  text: "",
-};
-
 const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   if (!apiKey) throw new Error("API Key not provided");
 
@@ -18,7 +11,7 @@ const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
 
   if (year) params.push(`year=${year}`);
   if (month) params.push(`month=${month}`);
-  if (day) params.push(`date=${day}`);
+  if (day) params.push(`day=${day}`);
   if (text) params.push(`text=${encodeURIComponent(text)}`);
 
   if (params.length > 0) {
@@ -93,24 +86,14 @@ const errorDisplayMessageFromFetch = (error, parentElement) => {
   parentElement.append(div);
 };
 
-getHistoricalEvents(API_KEY, requestOptions)
-  .then((data) =>
-    displayHistoricalEvents(parentElementAppend, data, "errClass")
-  )
-  .catch((err) => errorDisplayMessageFromFetch(err, parentElementAppend));
+// getHistoricalEvents(API_KEY, requestOptions)
+//   .then((data) =>
+//     displayHistoricalEvents(parentElementAppend, data, "errClass")
+//   )
+//   .catch((err) => errorDisplayMessageFromFetch(err, parentElementAppend));
 
 const getFormDataAndFetchThem = (data) => {
-  const [year, month, day] = data?.date?.split("-");
-  const text = data.eventText;
-
-  const requestOptions = {
-    year: Number(year),
-    month: Number(month),
-    day: Number(day),
-    text,
-  };
-
-  getHistoricalEvents(API_KEY, requestOptions)
+  getHistoricalEvents(API_KEY, data)
     .then((data) =>
       displayHistoricalEvents(parentElementAppend, data, "errClass")
     )
@@ -121,6 +104,32 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
-  getFormDataAndFetchThem(data);
+  const rawData = Object.fromEntries(formData.entries());
+  const requestData = {};
+
+  if (rawData) {
+    const { year, month, day } = rawData;
+    if (year.length > 0) requestData.year = Number(year);
+    if (month.length > 0) requestData.month = Number(month);
+    if (day.length > 0) requestData.day = Number(day);
+  }
+
+  if (rawData.eventText) {
+    requestData.text = rawData.eventText;
+  }
+
+  if (
+    !requestData.year &&
+    !requestData.month &&
+    !requestData.day &&
+    !requestData.text
+  ) {
+    return errorDisplayMessageFromFetch(
+      "Please provide at least a day or month or year or some text",
+      parentElementAppend
+    );
+  }
+
+  console.log(requestData);
+  getFormDataAndFetchThem(requestData);
 });
