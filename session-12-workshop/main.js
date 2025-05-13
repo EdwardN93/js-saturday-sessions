@@ -86,12 +86,6 @@ const errorDisplayMessageFromFetch = (error, parentElement) => {
   parentElement.append(div);
 };
 
-// getHistoricalEvents(API_KEY, requestOptions)
-//   .then((data) =>
-//     displayHistoricalEvents(parentElementAppend, data, "errClass")
-//   )
-//   .catch((err) => errorDisplayMessageFromFetch(err, parentElementAppend));
-
 const getFormDataAndFetchThem = (data) => {
   getHistoricalEvents(API_KEY, data)
     .then((data) =>
@@ -107,16 +101,44 @@ form.addEventListener("submit", (e) => {
   const rawData = Object.fromEntries(formData.entries());
   const requestData = {};
 
-  if (rawData) {
-    const { year, month, day } = rawData;
-    if (year.length > 0) requestData.year = Number(year);
-    if (month.length > 0) requestData.month = Number(month);
-    if (day.length > 0) requestData.day = Number(day);
+  const day = Number(rawData.day);
+  const month = Number(rawData.month);
+  const year = Number(rawData.year);
+  const text = rawData.eventText?.trim();
+
+  if (rawData.day && (day < 1 || day > 31)) {
+    return errorDisplayMessageFromFetch(
+      "Please provide a valid day",
+      parentElementAppend
+    );
   }
 
-  if (rawData.eventText) {
-    requestData.text = rawData.eventText;
+  if (rawData.month && (month < 1 || month > 12)) {
+    return errorDisplayMessageFromFetch(
+      "Please provide a valid month",
+      parentElementAppend
+    );
   }
+
+  if (day && month && year) {
+    const date = new Date(year, month - 1, day);
+    const isValid =
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day;
+
+    if (!isValid) {
+      return errorDisplayMessageFromFetch(
+        "Invalid date. Please check your input (e.g. February 30 doesn't exist).",
+        parentElementAppend
+      );
+    }
+  }
+
+  if (rawData.year) requestData.year = year;
+  if (rawData.month) requestData.month = month;
+  if (rawData.day) requestData.day = day;
+  if (text) requestData.text = text;
 
   if (
     !requestData.year &&
@@ -130,6 +152,5 @@ form.addEventListener("submit", (e) => {
     );
   }
 
-  console.log(requestData);
   getFormDataAndFetchThem(requestData);
 });
