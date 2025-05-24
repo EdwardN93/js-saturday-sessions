@@ -1,5 +1,8 @@
 const form = document.querySelector(".form");
 const parentElementAppend = document.querySelector(".appendDataOl");
+const gameContainer = document.querySelector(".gamesContainer"); // NOT FOR COURSE
+const formSearchGames = document.querySelector(".searchGames"); // NOT FOR COURSE
+const allGames = []; // NOT FOR COURSE
 
 const getHistoricalEvents = async (apiKey, requestOptions = {}) => {
   if (!apiKey) throw new Error("API Key not provided");
@@ -154,3 +157,80 @@ form.addEventListener("submit", (e) => {
 
   getFormDataAndFetchThem(requestData);
 });
+
+//////////////////////////////////////////
+///                                    ///
+///         NOT PART OF COURSE         ///
+///                                    ///
+//////////////////////////////////////////
+
+const client_id = "trri2ib651zl1ovquoc7b3nsijpn9c";
+const getGames = async () => {
+  const url = "https://free-to-play-games-database.p.rapidapi.com/api/games";
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": "fc407b2743msh03301e4b77cbf0ap14c3e8jsn3c75b504865f",
+      "x-rapidapi-host": "free-to-play-games-database.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    allGames.push(result);
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
+const gameListFactory = (parentElement, arr) => {
+  parentElement.innerHTML = "";
+  const ol = document.createElement("ol");
+  arr.forEach((item) => {
+    const html = `
+    <li>
+    <span class="title">${item.title}</span>
+    <span class="genre">${item.genre}</span>
+    <span class="developer">${item.developer}</span>
+    <img src="${item.thumbnail}">
+    <span class="short-description">${item.short_description}</span>
+    <a href="${item.game_url}"class="gameUrl" target= '_blank'>Go To ${item.title}</a>
+    <span class="platform">${item.platform}</span>
+    <span class="publisher">${item.publisher}</span>
+    <span class="release-date">${item.release_date}</span>
+    </li>
+    `;
+    ol.insertAdjacentHTML("beforeend", html);
+  });
+  parentElement.append(ol);
+};
+
+const searchByName = (gameDb, parentElement, searchText) => {
+  const filter = gameDb[0].filter((game) =>
+    game.title.toLowerCase().includes(searchText.toLowerCase())
+  );
+
+  if (filter.length > 0) {
+    gameListFactory(parentElement, filter);
+    console.log(filter);
+  }
+};
+
+formSearchGames.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(formSearchGames);
+  const data = Object.fromEntries(formData.entries());
+  searchByName(allGames, gameContainer, data.gameSearch);
+});
+
+const displayInfo = (parentEl, gamesData) => {
+  gameListFactory(parentEl, gamesData);
+};
+
+getGames()
+  .then((data) => {
+    displayInfo(gameContainer, data);
+  })
+  .catch((err) => console.error(err));
